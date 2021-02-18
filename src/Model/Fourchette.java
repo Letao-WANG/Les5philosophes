@@ -1,5 +1,10 @@
 package Model;
 
+/**
+ * Class Fork
+ * @author letao
+ *
+ */
 public class Fourchette {
 	private int numero;
 	private boolean occupe;

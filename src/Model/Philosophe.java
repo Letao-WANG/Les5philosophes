@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import Controller.Controller;
 
+/**
+ * Class Philosophe, which is Thread
+ * @author letao
+ *
+ */
 public class Philosophe implements Runnable {
 	private Controller controller;
 	private int numero;
@@ -23,13 +28,6 @@ public class Philosophe implements Runnable {
 		Philosophe.nombre++;
 	}
 
-	public Philosophe(int numero, ArrayList<Fourchette> fourchettes, ArrayList<Assiette> assiettes) {
-		this.numero = numero;
-		this.fourchettes = fourchettes;
-		this.assiettes = assiettes;
-		Philosophe.nombre++;
-	}
-
 	public void run() {
 		try {
 			Thread.sleep(1000);
@@ -37,6 +35,7 @@ public class Philosophe implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		// 3 etat
 		while (!assiettes.isEmpty()) {
 			reflechir();
 			manger();
@@ -46,7 +45,7 @@ public class Philosophe implements Runnable {
 
 	public void reflechir() {
 		try {
-			System.out.println("Philosophe" + this.numero + " est en train de réfléchir");
+			// set state reflechir
 			setEtat(0);
 			controller.repaint();
 			Thread.sleep(2000);
@@ -61,16 +60,14 @@ public class Philosophe implements Runnable {
 		// prendreAssiete
 		synchronized (assiettes) {
 			if (assiettes.isEmpty()) {
-				System.out.println("Pas d'assietes! ");
 				try {
+					// stop the current thread
 					Thread.sleep(1000*60*60);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			} else {
-				System.out.println("Philosophe" + this.numero + " prend l'assiette"
-						+ assiettes.get(assiettes.size() - 1).getNumero());
 				assiettes.remove(assiettes.size() - 1);
 				controller.removeAssiette();
 			}
@@ -88,9 +85,6 @@ public class Philosophe implements Runnable {
 				}
 			}
 			fourchettes.notify();
-			System.out.println("Philosophe" + this.numero + " prend la fourchette gauche"
-					+ this.fourchettes.get(this.numero).getNumero() + " et la fourchette droit "
-					+ this.fourchettes.get((this.numero + 1) % Philosophe.nombre).getNumero());
 			this.fourchettes.get(this.numero).setOccupe(true);
 			this.fourchettes.get((this.numero + 1) % Philosophe.nombre).setOccupe(true);
 
@@ -98,7 +92,7 @@ public class Philosophe implements Runnable {
 
 		// manger
 		try {
-			System.out.println("Philosophe" + this.numero + " est en train de manger");
+			// set state manger
 			setEtat(1);
 			controller.repaint();
 			Thread.sleep(1000);
@@ -111,9 +105,6 @@ public class Philosophe implements Runnable {
 		synchronized (fourchettes) {
 			fourchettes.notify();
 
-			System.out.println("Philosophe" + this.numero + " depose la fourchette gauche"
-					+ this.fourchettes.get(this.numero).getNumero() + " et la fourchette droit "
-					+ this.fourchettes.get((this.numero + 1) % Philosophe.nombre).getNumero());
 			this.fourchettes.get(this.numero).setOccupe(false);
 			this.fourchettes.get((this.numero + 1) % Philosophe.nombre).setOccupe(false);
 		}
@@ -122,7 +113,7 @@ public class Philosophe implements Runnable {
 
 	public void dormir() {
 		try {
-			System.out.println("Philosophe" + this.numero + " est en train de dormir");
+			// set state dormir
 			setEtat(2);
 			controller.repaint();
 			Thread.sleep(1000);
