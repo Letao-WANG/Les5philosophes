@@ -2,7 +2,7 @@ package Model;
 
 /**
  * Class Fork
- * @author letao
+ * @author letao et Jingyao
  *
  */
 public class Fourchette {

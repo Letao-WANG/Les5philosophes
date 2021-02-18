@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import Model.Assiette;
 import Model.Fourchette;
 
@@ -126,9 +125,8 @@ class Philosophe implements Runnable {
 					e.printStackTrace();
 				}
 			}
-			fourchettes.notify();
-			System.out.println("Philosophe" + this.numero + " prend la fourchette gauche"
-					+ this.fourchettes.get(this.numero).getNumero() + " et la fourchette droit "
+			System.out.println("Philosophe" + this.numero + " prend la fourchette "
+					+ this.fourchettes.get(this.numero).getNumero() + " et la fourchette "
 					+ this.fourchettes.get((this.numero + 1) % Philosophe.nombre).getNumero());
 			this.fourchettes.get(this.numero).setOccupe(true);
 			this.fourchettes.get((this.numero + 1) % Philosophe.nombre).setOccupe(true);
@@ -146,10 +144,10 @@ class Philosophe implements Runnable {
 
 		// deposer Fourchette
 		synchronized (fourchettes) {
-			fourchettes.notify();
+			fourchettes.notifyAll();
 
-			System.out.println("Philosophe" + this.numero + " depose la fourchette gauche"
-					+ this.fourchettes.get(this.numero).getNumero() + " et la fourchette droit "
+			System.out.println("Philosophe" + this.numero + " depose la fourchette "
+					+ this.fourchettes.get(this.numero).getNumero() + " et la fourchette "
 					+ this.fourchettes.get((this.numero + 1) % Philosophe.nombre).getNumero());
 			this.fourchettes.get(this.numero).setOccupe(false);
 			this.fourchettes.get((this.numero + 1) % Philosophe.nombre).setOccupe(false);
@@ -159,8 +157,8 @@ class Philosophe implements Runnable {
 
 	public void dormir() {
 		try {
-			System.out.println("Philosophe" + this.numero + " est en train de dormir");
 			Thread.sleep(1000);
+			System.out.println("Philosophe" + this.numero + " est en train de dormir");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,13 +1,10 @@
 package Controller;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import Model.Assiette;
 import Model.Fourchette;
 import Model.Philosophe;
 import Vue.EnterVue;
-import Vue.MainVue;
 
 /**
  * The controller of MVC

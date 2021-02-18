@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import Controller.Controller;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,6 +75,7 @@ public class EnterVue extends JFrame implements ActionListener {
 
 		this.setTitle("Les philosophes");
 		this.setSize(400, 400);
+		this.setLocation(50, 50);;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}

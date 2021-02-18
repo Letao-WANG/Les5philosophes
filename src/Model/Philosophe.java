@@ -6,7 +6,7 @@ import Controller.Controller;
 
 /**
  * Class Philosophe, which is Thread
- * @author letao
+ * @author letao et Jingyao
  *
  */
 public class Philosophe implements Runnable {
@@ -37,6 +37,7 @@ public class Philosophe implements Runnable {
 		}
 		// 3 etat
 		while (!assiettes.isEmpty()) {
+//		while (true) {
 			reflechir();
 			manger();
 			dormir();
@@ -84,7 +85,6 @@ public class Philosophe implements Runnable {
 					e.printStackTrace();
 				}
 			}
-			fourchettes.notify();
 			this.fourchettes.get(this.numero).setOccupe(true);
 			this.fourchettes.get((this.numero + 1) % Philosophe.nombre).setOccupe(true);
 
@@ -103,7 +103,7 @@ public class Philosophe implements Runnable {
 
 		// deposer Fourchette
 		synchronized (fourchettes) {
-			fourchettes.notify();
+			fourchettes.notifyAll();
 
 			this.fourchettes.get(this.numero).setOccupe(false);
 			this.fourchettes.get((this.numero + 1) % Philosophe.nombre).setOccupe(false);

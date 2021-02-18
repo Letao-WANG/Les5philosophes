@@ -2,18 +2,13 @@ package Vue;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.HashMap;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import Controller.Controller;
 
 /**
  * Main graphical interface
  * 
- * @author letao
+ * @author letao et Jingyao
  *
  */
 public class MainVue extends JFrame {
@@ -85,7 +80,7 @@ public class MainVue extends JFrame {
 			int pointYPhi = (int) (originY + bias + radius * (Math.sin(2 * i * Math.PI / numberPhi)));
 			g.fillOval(pointXPhi, pointYPhi, 50, 50);
 			g.setColor(Color.black);
-			g.drawString("P" + String.valueOf(i) + ":" + etat, pointXPhi + 5, pointYPhi + bias);
+			g.drawString("P" + String.valueOf(i) + ":" + etat, pointXPhi + 10, pointYPhi + bias);
 
 			// Draw Fourchettes
 			if (controller.getPhilosophe(i).getFourchette(i).getOccupe())

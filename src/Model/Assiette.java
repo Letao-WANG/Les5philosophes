@@ -2,7 +2,7 @@ package Model;
 
 /**
  * Class Plate
- * @author letao
+ * @author letao et JIngyao
  *
  */
 public class Assiette
