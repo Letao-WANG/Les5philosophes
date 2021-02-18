@@ -11,4 +11,12 @@ Par exemple, lorsqu'un Thread Philosophe exécute prendreAssiete dans la méthod
 
 Lorsqu'un Thread Pilosophe arbitraire exécute la méthode prendreFourchette, la situation est légèrement différente. Par exemple, pour le Thread Philosophe A, le programme vérifie d'abord si les deux Fourchettes proches du philosophe A sont déjà occupés. Si un autre Thread Philosophe B utilise les Fourchettes, le programme exécute la commande fourchettes.wait() et déverrouille tout à en même temps Les Fourchettes sont verrouillés collectivement, et jusqu'à ce que l'autre philosophe B ait fini de manger(), la méthode fourchettes.notifyAll() débloquez tous les Thread Philosophe qui wait() Fourchette, ensuite pose les Fourchettes et n'est plus occupé, confirme que les deux Fourchettes proches ne sont pas occupés ( Il est possible que le Thread Philosophe C vient de déposer les Fourchettes, mais ces Fourchettes ne sont pas ce dont A a besoin ), puis le Thread Philosophe A peut choisisser monter, manger et déposer etc. 
 
+Comment RUN
 
+Le projet adopte la conception MVC et deux fichiers peuvent être exécutés:
+
+TestSansGraphiques.java : l'application fonctionne sans l’interface graphique
+C'est sur src/TestSansGraphiques.java
+
+Controller.java : l'application fonctionne avec l’interface graphique
+C'est sur src/Controller/Controller.java
